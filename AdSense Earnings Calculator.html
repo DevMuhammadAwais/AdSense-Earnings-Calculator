@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AdSense Earnings Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
+
+      <p class="text-center">
+        Enter the number of page views, click-through rate, and cost per click to
+        calculate earnings:
+      </p>
+
+      <form onsubmit="return calculateEarnings()">
+        <div class="form-group">
+          <label for="pageViews">Page Views:</label>
+          <input
+            type="number"
+            id="pageViews"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="clickThroughRate">Click-Through Rate (%):</label>
+          <input
+            type="number"
+            id="clickThroughRate"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="costPerClick">Cost Per Click ($):</label>
+          <input
+            type="number"
+            id="costPerClick"
+            class="form-control"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Calculate
+        </button>
+      </form>
+
+      <div class="mt-4">
+        <h4>Earnings:</h4>
+        <p>Daily: $<span id="dailyEarnings"></span></p>
+        <p>Monthly: $<span id="monthlyEarnings"></span></p>
+        <p>Yearly: $<span id="yearlyEarnings"></span></p>
+      </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      function calculateEarnings() {
+        var pageViews = document.getElementById("pageViews").value;
+        var clickThroughRate =
+          document.getElementById("clickThroughRate").value;
+        var costPerClick = document.getElementById("costPerClick").value;
+
+        var dailyEarnings = (pageViews * clickThroughRate * costPerClick) / 100;
+        var monthlyEarnings = dailyEarnings * 30;
+        var yearlyEarnings = monthlyEarnings * 12;
+
+        document.getElementById("dailyEarnings").innerText =
+          dailyEarnings.toFixed(2);
+        document.getElementById("monthlyEarnings").innerText =
+          monthlyEarnings.toFixed(2);
+        document.getElementById("yearlyEarnings").innerText =
+          yearlyEarnings.toFixed(2);
+        return false;
+      }
+    </script>
+  </body>
+</html>
